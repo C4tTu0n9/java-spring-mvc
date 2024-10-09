@@ -1,10 +1,14 @@
 package vn.hoidanit.laptopshop.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "products")
@@ -15,15 +19,25 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotEmpty(message = "Product Name is not empty!")
     private String name;
+
+    @DecimalMin(value = "0", inclusive = false, message = "Price is greater or equal to 1")
     private double price;
     private String image;
+
+    @NotEmpty(message = "detail Description is not empty")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String detailDesc;
+
+    @NotEmpty(message = "short Description is not empty")
     private String shortDesc;
+
+    @Min(value = 1, message = "Quantity is greater or equal to 1")
     private long quantity;
     private long sold;
     private String factory;
-    private String targer;
+    private String target;
 
     public long getId() {
         return id;
@@ -97,19 +111,19 @@ public class Product {
         this.factory = factory;
     }
 
-    public String getTarger() {
-        return targer;
+    public String getTarget() {
+        return target;
     }
 
-    public void setTarger(String targer) {
-        this.targer = targer;
+    public void setTarget(String target) {
+        this.target = target;
     }
 
     @Override
     public String toString() {
         return "Product [id=" + id + ", name=" + name + ", price=" + price + ", image=" + image + ", detailDesc="
                 + detailDesc + ", shortDesc=" + shortDesc + ", quantity=" + quantity + ", sold=" + sold + ", factory="
-                + factory + ", targer=" + targer + "]";
+                + factory + ", target=" + target + "]";
     }
 
 }

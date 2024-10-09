@@ -9,7 +9,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
             <meta name="author" content="Hỏi Dân IT" />
-            <title>Dashboard - Hỏi Dân IT</title>
+            <title>Dashboard - Admin</title>
             <link href="/css/styles.css" rel="stylesheet" />
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         </head>
@@ -22,11 +22,51 @@
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
-                            <h1 class="mt-4">Dashboard</h1>
-                            <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item active">Dashboard</li>
-                            </ol>
-                            <div>Product</div>
+                            <h1 class="mt-4">Manage Products</h1>
+                        </div>
+                        <div class="container mt-5">
+                            <div class="row">
+                                <div class="col-12 mx-auto">
+                                    <div class="d-flex justify-content-between">
+                                        <h3>
+                                            Table users
+                                        </h3>
+                                        <div>
+                                            <a href="/admin/product/create" class="btn btn-primary">Create new
+                                                product</a>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Factory</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${productList}" var="p">
+                                                <tr>
+                                                    <th scope="row">${p.id}</th>
+                                                    <td>${p.name}</td>
+                                                    <td>${p.price}</td>
+                                                    <td>${p.factory}</td>
+                                                    <td><a href="/admin/product/${p.id}"
+                                                            class="btn btn-success">view</a>
+                                                        <a href="/admin/product/update/${p.id}"
+                                                            class="btn btn-warning">Update</a>
+                                                        <a href="/admin/product/delete/${p.id}"
+                                                            class="btn btn-danger">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </main>
                     <jsp:include page="../layout/footer.jsp" />
