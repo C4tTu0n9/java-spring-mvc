@@ -50,7 +50,8 @@ public class UserController {
     @PostMapping("/admin/user/create")
     public String createUserPage(Model model,
             @ModelAttribute("newUser") @Valid User cattuong,
-            BindingResult newUserBindingResult, @RequestParam("avatarFile") MultipartFile file) {
+            BindingResult newUserBindingResult,
+            @RequestParam(value = "avatarFile", required = false) MultipartFile file) {
 
         List<FieldError> errors = newUserBindingResult.getFieldErrors();
         for (FieldError error : errors) {
@@ -59,7 +60,7 @@ public class UserController {
 
         // validate
         if (newUserBindingResult.hasErrors()) {
-            return "/admin/user/create";
+            return "admin/user/create";
         }
 
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
