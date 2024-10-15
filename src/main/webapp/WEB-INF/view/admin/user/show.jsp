@@ -50,6 +50,7 @@
                                                         <th scope="row">${u.id}</th>
                                                         <td>${u.email}</td>
                                                         <td>${u.fullName}</td>
+                                                        <td>${u.role.name}</td>
                                                         <td><a href="/admin/user/${u.id}"
                                                                 class="btn btn-success">view</a>
                                                             <a href="/admin/user/update/${u.id}"
